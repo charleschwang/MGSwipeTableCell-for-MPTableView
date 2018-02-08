@@ -1,0 +1,13 @@
+/*
+ * MGSwipeTableCell is licensed under MIT license. See LICENSE.md file for more information.
+ * Copyright (c) 2014 Imanol Fernandez @MortimerGoro
+ */
+
+#import <UIKit/UIKit.h>
+#import "MGSwipeTableCell.h"
+
+@interface DemoViewController : UIViewController<MPTableViewDataSource, MPTableViewDelegate, MGSwipeTableCellDelegate, UIActionSheetDelegate>
+
+@property (strong, nonatomic) IBOutlet MPTableView *tableView;
+
+@end
