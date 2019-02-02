@@ -111,12 +111,12 @@
 			isa = PBXGroup;
 			children = (
 				65A66E412028A48E00CA45F5 /* MPTableView.h */,
-				65A66E422028A48E00CA45F5 /* MPIndexPath.h */,
-				65A66E432028A48E00CA45F5 /* MPTableViewCell.mm */,
-				65A66E442028A48E00CA45F5 /* Private */,
 				65A66E472028A48E00CA45F5 /* MPIndexPath.m */,
-				65A66E482028A48E00CA45F5 /* MPTableView.m */,
 				65A66E492028A48E00CA45F5 /* MPTableViewCell.h */,
+				65A66E432028A48E00CA45F5 /* MPTableViewCell.mm */,
+				65A66E422028A48E00CA45F5 /* MPIndexPath.h */,
+				65A66E482028A48E00CA45F5 /* MPTableView.m */,
+				65A66E442028A48E00CA45F5 /* Private */,
 			);
 			name = MPTableView;
 			path = ../../MGSwipeTableCell/MPTableView;
@@ -125,8 +125,8 @@
 		65A66E442028A48E00CA45F5 /* Private */ = {
 			isa = PBXGroup;
 			children = (
-				65A66E452028A48E00CA45F5 /* MPTableViewSection.mm */,
 				65A66E462028A48E00CA45F5 /* MPTableViewSection.h */,
+				65A66E452028A48E00CA45F5 /* MPTableViewSection.mm */,
 			);
 			path = Private;
 			sourceTree = "<group>";

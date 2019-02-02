@@ -28,7 +28,7 @@
 // Use the estimatedHeight methods to quickly calcuate guessed values which will allow for fast load times of the table.
 // If these methods are implemented, the above -MPTableView:heightForXXX calls will be deferred until views are ready to be displayed, so more expensive logic can be placed there.
 
-// There is no estimatedRowHeight、estimatedSectionHeaderHeight and estimatedSectionFooterHeight, because they can be modified at any time, and that will cause some trouble.
+// There are no estimatedRowHeight、estimatedSectionHeaderHeight and estimatedSectionFooterHeight to be properties in MPTableView, because they can be modified at any time, and that will cause some trouble.
 
 - (CGFloat)MPTableView:(MPTableView *)tableView estimatedHeightForRowAtIndexPath:(MPIndexPath *)indexPath;
 - (CGFloat)MPTableView:(MPTableView *)tableView estimatedHeightForHeaderInSection:(NSUInteger)section;
@@ -43,7 +43,7 @@
 - (BOOL)MPTableView:(MPTableView *)tableView canMoveRowAtIndexPath:(MPIndexPath *)indexPath;
 - (BOOL)MPTableView:(MPTableView *)tableView canMoveRowToIndexPath:(MPIndexPath *)indexPath;
 
-// If not implemented, touch any position of cell will make it begin to move. Default is [cell bounds].
+// If not implemented, touch any position in cell will make it begin to move. Default is [cell bounds].
 - (CGRect)MPTableView:(MPTableView *)tableView rectForCellToMoveRowAtIndexPath:(MPIndexPath *)indexPath;
 
 // Called when the dragging action is stopping.
@@ -69,12 +69,12 @@
 // Customize animations for updating. a reload-update is composed of a delete and a insert function.
 
 // Called when updating.
-// The pathPosition is the origin.y of those animating views that in front of the current cell. In the MPTableViewRowAnimation, the pathPosition is the cell's starting position.
+// The pathPosition is the origin.y of those animating views that in front of the current cell. In the default table view animations, the pathPosition is the cell's starting position.
 - (void)MPTableView:(MPTableView *)tableView beginToInsertCell:(MPTableViewCell *)cell forRowAtIndexPath:(MPIndexPath *)indexPath withAnimationPathPosition:(CGFloat)pathPosition;
 
-// The pathPosition in delete is a target position that views will move to. In the MPTableViewRowAnimation, the pathPosition is the cell's target position that make it looks like always follow the font one.
+// The pathPosition in delete methods is a target position that views will move to. In the default table view animations, the pathPosition is the cell's target position that make it looks like always follow the font one.
 
-// ※※※※※※※※※※ WARNING: That deleted cell need to be manually removed. ※※※※※※※※※※
+// ※※※※※※※※※※ WARNING: This deleted cell need to be manually removed. ※※※※※※※※※※
 - (void)MPTableView:(MPTableView *)tableView beginToDeleteCell:(MPTableViewCell *)cell forRowAtIndexPath:(MPIndexPath *)indexPath withAnimationPathPosition:(CGFloat)pathPosition;
 
 - (void)MPTableView:(MPTableView *)tableView beginToInsertHeaderView:(MPTableReusableView *)view forSection:(NSUInteger)section withAnimationPathPosition:(CGFloat)pathPosition;
@@ -100,7 +100,7 @@
 
 // Enter move mode
 - (void)MPTableView:(MPTableView *)tableView shouldMoveRowAtIndexPath:(MPIndexPath *)sourceIndexPath;
-// Called when the moving animation is completed.
+// Called when the dragging is completed in move mode.
 - (void)MPTableView:(MPTableView *)tableView didEndMoveRowAtIndexPath:(MPIndexPath *)sourceIndexPath toIndexPath:(MPIndexPath *)destinationIndexPath;
 
 @end
@@ -148,7 +148,7 @@ typedef NS_ENUM(NSInteger, MPTableViewRowAnimation) {
     MPTableViewRowAnimationBottom,
     MPTableViewRowAnimationMiddle,
     MPTableViewRowAnimationNone,
-    MPTableViewRowAnimationCustom,
+    MPTableViewRowAnimationCustom, // require to use those protocols of MPTableViewDelegate to customize cells(and section header/footer) animations
     MPTableViewRowAnimationRandom = 100
 };
 
@@ -204,12 +204,12 @@ typedef NS_ENUM(NSInteger, MPTableViewRowAnimation) {
 
 @property (nonatomic, getter=isCachesReloadEnabled) BOOL cachesReloadEnabled; // default is YES, when reloading the table view, without clear reusable views and cache all displayed views to reuse(It is best to make sure that table view will reload with the same cell/reusable class objects);
 
- // Sometimes we frequently make table view updating, that may produce many caches(reusable views) and you can not make the most of them.
-- (void)clearReusableCells;
-- (void)clearReusableSectionViews;
-
 - (void)reloadData;
-- (void)reloadDataAsyncWithCompletion:(void (^)(void))completion; // reload data asynchronously. In this process, the table view will work as usual. Allows working in a async thread
+
+/**
+ Reload data asynchronously. In this process, the table view will work as usual, but its dataSource APIs will be invoked asynchronously. Allows working in a async thread.
+ */
+- (void)reloadDataAsyncWithCompletion:(void (^)(void))completion;
 
 @property (nonatomic) BOOL allowsSelection;  // default is YES.
 @property (nonatomic) BOOL allowsMultipleSelection; // default is NO.
@@ -227,19 +227,49 @@ typedef NS_ENUM(NSInteger, MPTableViewRowAnimation) {
 
 - (void)deselectRowAtIndexPath:(MPIndexPath *)indexPath animated:(BOOL)animated;
 
-@property (nonatomic, getter=isUpdateForceReload) BOOL updateForceReload; // default is YES. If NO, table view will not reload data(mainly is height info) from data source for those off-screen views when updating, that will get better performance. If the updates will make contentOffset change, then you should set updateForceReload to YES.
+/**
+ Default is YES.
+ If NO, table view will not reload the heights info from data source for those off-screen views when updating.
+ So if you can confirm that do not need to change all cells heights when updating, then you should set it to NO to get best performance.
+ But if you can't, and the updates will make contentOffset change, then you should set it to YES.
+ */
+@property (nonatomic, getter=isUpdateForceReload) BOOL updateForceReload;
 
-@property (nonatomic) BOOL updateLayoutSubviewsOptionEnabled; // default is YES, table view will use UIViewAnimationOptionLayoutSubviews as an option in animations of updating. If not, the animation effects may look unnatural when you using Autolayout and default table view animations.
+/**
+ Default is NO.
+ Sometimes table view will create some subviews(cells and section views) to display update animations, or in other words these subviews have never be added to table view before update and they will be hidden when update is finished.
+ That should make too many subviews to join reusable queues, we must release them manually(call -clearReusableCellsAndViews).
+ If YES, table view will not create this kind of subviews for updating, that will influence the animation effect. But there still may create too many reusable subviews if we start too many updates at the same time.
+ */
+@property (nonatomic, getter=isUpdateOptimizeViews) BOOL updateOptimizeViews;
+
+// Sometimes we frequently update table view(using those update APIs but not reloadData), that may produce many caches(reusable views) and table view can not make the most of them.
+- (NSArray *)identifiersForReusableCells;
+- (NSArray *)identifiersForReusableViews;
+
+- (NSUInteger)numberOfReusableCellsWithIdentifier:(NSString *)identifier;
+- (NSUInteger)numberOfReusableViewsWithIdentifier:(NSString *)identifier;
+
+- (void)clearReusableCellsInCount:(NSUInteger)count withIdentifier:(NSString *)identifier;
+- (void)clearReusableViewsInCount:(NSUInteger)count withIdentifier:(NSString *)identifier;
+- (void)clearReusableCellsAndViews;
+
+@property (nonatomic) BOOL updateLayoutSubviewsOptionEnabled; // default is YES, table view will use UIViewAnimationOptionLayoutSubviews as an option in animations of updating. If not, the animation effects may look unnatural when you using the Autolayout and those default table view animations.
+
+@property (nonatomic) BOOL updateAllowUserInteraction; // default is YES, table view can be scrolled when updating(using UIViewAnimationOptionAllowUserInteraction for all animations), and all subviews can be selected, or you can turn it off and set the userInteractionEnabled of those animated cells to NO.
 
 - (BOOL)isUpdating; // update animating
 
 - (void)performBatchUpdates:(void (^)(void))updates completion:(void (^)(BOOL finished))completion; // allow multiple insert/delete/reload/move of rows and sections to be animated simultaneously. Nestable
 
 /**
- similar to -performBatchUpdates:completion:, more animation options have been provided
+ Similar to -performBatchUpdates:completion: , provided more animation options.
  */
 - (void)performBatchUpdates:(void (^)(void))updates duration:(NSTimeInterval)duration delay:(NSTimeInterval)delay options:(UIViewAnimationOptions)options completion:(void (^)(BOOL finished))completion;
 
+/**
+ Similar to -performBatchUpdates:completion: , provided many animation options.
+ */
 - (void)performBatchUpdates:(void (^)(void))updates duration:(NSTimeInterval)duration delay:(NSTimeInterval)delay usingSpringWithDamping:(CGFloat)dampingRatio initialSpringVelocity:(CGFloat)velocity options:(UIViewAnimationOptions)options completion:(void (^)(BOOL finished))completion;
 
 - (void)deleteSections:(NSIndexSet *)sections withRowAnimation:(MPTableViewRowAnimation)animation;
@@ -252,7 +282,7 @@ typedef NS_ENUM(NSInteger, MPTableViewRowAnimation) {
 - (void)reloadRowsAtIndexPaths:(NSArray *)indexPaths withRowAnimation:(MPTableViewRowAnimation)animation;
 - (void)moveRowAtIndexPath:(MPIndexPath *)indexPath toIndexPath:(MPIndexPath *)newIndexPath;
 
-@property (nonatomic, getter=isMoveModeEnabled) BOOL moveModeEnabled; // default is NO.
+@property (nonatomic, getter=isMoveModeEnabled) BOOL moveModeEnabled; // default is NO. if enable it, use the protocols of MPTableViewDataSource and MPTableViewDelegate to control and track dragging state of cells.
 @property (nonatomic) CFTimeInterval minimumPressDurationForMovement; // default is 0.1.
 @property (nonatomic, assign) BOOL allowsDragCellOut; // default is NO.
 @property (nonatomic) BOOL allowsSelectionDuringMoving;                                 // default is NO. Controls whether rows can be selected when in moving mode
