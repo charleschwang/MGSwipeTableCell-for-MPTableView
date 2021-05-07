@@ -8,19 +8,21 @@
 
 #import <UIKit/UIKit.h>
 
-#import "MPIndexPath.h"
+#ifndef NS_DESIGNATED_INITIALIZER
+#define NS_DESIGNATED_INITIALIZER
+#endif
 
 @interface MPTableReusableView : UIView
 
 @property (nonatomic, copy, readonly) NSString *reuseIdentifier;
 
-// If the view can be reused, you must pass in a reuse identifier, or it will not be reused.  You should use the same reuse identifier for all reusable views of the same form.
+// If the view can be reused, you must pass in a reuse identifier, or it will not be reused. You should use the same reuse identifier for all reusable views of the same form.
 - (instancetype)initWithReuseIdentifier:(NSString *)reuseIdentifier NS_DESIGNATED_INITIALIZER;
 - (instancetype)initWithCoder:(NSCoder *)aDecoder NS_DESIGNATED_INITIALIZER;
 
-- (void)prepareForRecycle; // called when the reusable view end displaying (will enter the reuse queue)
+- (void)prepareForRecycle; // called when the reusable view end displaying (will into the reusable queue)
 
-- (void)prepareForReuse; // if the reusable view is reusable (has a reuse identifier), this is called just before the reusable view is returned from the table view method dequeueReusableViewWithIdentifier:(or dequeueReusableCellWithIdentifier).  If you override, you don't need to call super.
+- (void)prepareForReuse; // if the reusable view is reusable (has a reuse identifier), this is called just before the reusable view is returned from the table view method dequeueReusableViewWithIdentifier: (or dequeueReusableCellWithIdentifier). If you override, you don't need to call super.
 
 @end
 

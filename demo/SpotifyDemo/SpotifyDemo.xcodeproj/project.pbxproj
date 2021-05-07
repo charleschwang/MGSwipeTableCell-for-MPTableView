@@ -16,7 +16,6 @@
 		11754E5519D5C3E5009CE7B5 /* MGSwipeTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 11754E5319D5C3E5009CE7B5 /* MGSwipeTableCell.m */; };
 		65A66E4A2028A48F00CA45F5 /* MPTableViewCell.mm in Sources */ = {isa = PBXBuildFile; fileRef = 65A66E432028A48E00CA45F5 /* MPTableViewCell.mm */; };
 		65A66E4B2028A48F00CA45F5 /* MPTableViewSection.mm in Sources */ = {isa = PBXBuildFile; fileRef = 65A66E452028A48E00CA45F5 /* MPTableViewSection.mm */; };
-		65A66E4C2028A48F00CA45F5 /* MPIndexPath.m in Sources */ = {isa = PBXBuildFile; fileRef = 65A66E472028A48E00CA45F5 /* MPIndexPath.m */; };
 		65A66E4D2028A48F00CA45F5 /* MPTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 65A66E482028A48E00CA45F5 /* MPTableView.m */; };
 /* End PBXBuildFile section */
 
@@ -35,11 +34,9 @@
 		11754E5219D5C3E5009CE7B5 /* MGSwipeButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MGSwipeButton.m; path = ../../MGSwipeTableCell/MGSwipeButton.m; sourceTree = "<group>"; };
 		11754E5319D5C3E5009CE7B5 /* MGSwipeTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MGSwipeTableCell.m; path = ../../MGSwipeTableCell/MGSwipeTableCell.m; sourceTree = "<group>"; };
 		65A66E412028A48E00CA45F5 /* MPTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPTableView.h; sourceTree = "<group>"; };
-		65A66E422028A48E00CA45F5 /* MPIndexPath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPIndexPath.h; sourceTree = "<group>"; };
 		65A66E432028A48E00CA45F5 /* MPTableViewCell.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = MPTableViewCell.mm; sourceTree = "<group>"; };
 		65A66E452028A48E00CA45F5 /* MPTableViewSection.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = MPTableViewSection.mm; sourceTree = "<group>"; };
 		65A66E462028A48E00CA45F5 /* MPTableViewSection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPTableViewSection.h; sourceTree = "<group>"; };
-		65A66E472028A48E00CA45F5 /* MPIndexPath.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPIndexPath.m; sourceTree = "<group>"; };
 		65A66E482028A48E00CA45F5 /* MPTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPTableView.m; sourceTree = "<group>"; };
 		65A66E492028A48E00CA45F5 /* MPTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPTableViewCell.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -110,13 +107,11 @@
 		65A66E402028A48E00CA45F5 /* MPTableView */ = {
 			isa = PBXGroup;
 			children = (
+				65A66E442028A48E00CA45F5 /* Private */,
 				65A66E412028A48E00CA45F5 /* MPTableView.h */,
-				65A66E472028A48E00CA45F5 /* MPIndexPath.m */,
+				65A66E482028A48E00CA45F5 /* MPTableView.m */,
 				65A66E492028A48E00CA45F5 /* MPTableViewCell.h */,
 				65A66E432028A48E00CA45F5 /* MPTableViewCell.mm */,
-				65A66E422028A48E00CA45F5 /* MPIndexPath.h */,
-				65A66E482028A48E00CA45F5 /* MPTableView.m */,
-				65A66E442028A48E00CA45F5 /* Private */,
 			);
 			name = MPTableView;
 			path = ../../MGSwipeTableCell/MPTableView;
@@ -170,6 +165,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
@@ -202,7 +198,6 @@
 			files = (
 				65A66E4B2028A48F00CA45F5 /* MPTableViewSection.mm in Sources */,
 				11754E2F19D5C1EA009CE7B5 /* SpotifyViewController.m in Sources */,
-				65A66E4C2028A48F00CA45F5 /* MPIndexPath.m in Sources */,
 				11754E5519D5C3E5009CE7B5 /* MGSwipeTableCell.m in Sources */,
 				11754E5419D5C3E5009CE7B5 /* MGSwipeButton.m in Sources */,
 				65A66E4D2028A48F00CA45F5 /* MPTableView.m in Sources */,

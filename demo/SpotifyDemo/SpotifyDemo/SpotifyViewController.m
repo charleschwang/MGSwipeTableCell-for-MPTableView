@@ -109,25 +109,25 @@ typedef void(^MailActionCallback)(BOOL cancelled, BOOL deleted, NSInteger action
     _tableView.frame = self.view.bounds;
 }
 
--(void) deleteMail:(MPIndexPath *) indexPath
+-(void) deleteMail:(NSIndexPath *) indexPath
 {
     [demoData removeObjectAtIndex:indexPath.row];
     [_tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:MPTableViewRowAnimationLeft];
 }
 
--(SongData *) songForIndexPath:(MPIndexPath*) path
+-(SongData *) songForIndexPath:(NSIndexPath*) path
 {
     return [demoData objectAtIndex:path.row];
 }
 
 #pragma mark Table Delegate
 
-- (NSUInteger)MPTableView:(MPTableView *)tableView numberOfRowsInSection:(NSUInteger)section
+- (NSInteger)MPTableView:(MPTableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return demoData.count;
 }
 
-- (MPTableViewCell *)MPTableView:(MPTableView *)tableView cellForRowAtIndexPath:(MPIndexPath *)indexPath
+- (MPTableViewCell *)MPTableView:(MPTableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString * identifier = @"SongCell";
     MGSwipeTableCell * cell = [tableView dequeueReusableCellWithIdentifier:identifier];
@@ -162,7 +162,7 @@ typedef void(^MailActionCallback)(BOOL cancelled, BOOL deleted, NSInteger action
     return cell;
 }
 
-- (CGFloat)MPTableView:(MPTableView *)tableView heightForRowAtIndexPath:(MPIndexPath *)indexPath
+- (CGFloat)MPTableView:(MPTableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return 50;
 }

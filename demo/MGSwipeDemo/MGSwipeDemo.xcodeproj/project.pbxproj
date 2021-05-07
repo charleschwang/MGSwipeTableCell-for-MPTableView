@@ -27,7 +27,6 @@
 		11D0A01E1996C339008D8809 /* cat@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 11D0A01D1996C339008D8809 /* cat@2x.png */; };
 		65A66E3C202898A100CA45F5 /* MPTableViewCell.mm in Sources */ = {isa = PBXBuildFile; fileRef = 65A66E35202898A100CA45F5 /* MPTableViewCell.mm */; };
 		65A66E3D202898A100CA45F5 /* MPTableViewSection.mm in Sources */ = {isa = PBXBuildFile; fileRef = 65A66E37202898A100CA45F5 /* MPTableViewSection.mm */; };
-		65A66E3E202898A100CA45F5 /* MPIndexPath.m in Sources */ = {isa = PBXBuildFile; fileRef = 65A66E39202898A100CA45F5 /* MPIndexPath.m */; };
 		65A66E3F202898A100CA45F5 /* MPTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 65A66E3A202898A100CA45F5 /* MPTableView.m */; };
 /* End PBXBuildFile section */
 
@@ -60,11 +59,9 @@
 		11D0A01B1996B2BE008D8809 /* autolayout_test.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = autolayout_test.storyboard; sourceTree = "<group>"; };
 		11D0A01D1996C339008D8809 /* cat@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cat@2x.png"; path = "assets/cat@2x.png"; sourceTree = "<group>"; };
 		65A66E33202898A100CA45F5 /* MPTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPTableView.h; sourceTree = "<group>"; };
-		65A66E34202898A100CA45F5 /* MPIndexPath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPIndexPath.h; sourceTree = "<group>"; };
 		65A66E35202898A100CA45F5 /* MPTableViewCell.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = MPTableViewCell.mm; sourceTree = "<group>"; };
 		65A66E37202898A100CA45F5 /* MPTableViewSection.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = MPTableViewSection.mm; sourceTree = "<group>"; };
 		65A66E38202898A100CA45F5 /* MPTableViewSection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPTableViewSection.h; sourceTree = "<group>"; };
-		65A66E39202898A100CA45F5 /* MPIndexPath.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPIndexPath.m; sourceTree = "<group>"; };
 		65A66E3A202898A100CA45F5 /* MPTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPTableView.m; sourceTree = "<group>"; };
 		65A66E3B202898A100CA45F5 /* MPTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPTableViewCell.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -169,8 +166,6 @@
 			isa = PBXGroup;
 			children = (
 				65A66E36202898A100CA45F5 /* Private */,
-				65A66E34202898A100CA45F5 /* MPIndexPath.h */,
-				65A66E39202898A100CA45F5 /* MPIndexPath.m */,
 				65A66E33202898A100CA45F5 /* MPTableView.h */,
 				65A66E3A202898A100CA45F5 /* MPTableView.m */,
 				65A66E3B202898A100CA45F5 /* MPTableViewCell.h */,
@@ -223,6 +218,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 			);
 			mainGroup = 113D5E031996AD7400066AE3;
@@ -264,7 +260,6 @@
 				65A66E3D202898A100CA45F5 /* MPTableViewSection.mm in Sources */,
 				11D0A0141996AFDE008D8809 /* DemoViewController.m in Sources */,
 				11CF2E9B19D7357F0092A789 /* MGSwipeButton.m in Sources */,
-				65A66E3E202898A100CA45F5 /* MPIndexPath.m in Sources */,
 				113D5E201996AD7400066AE3 /* AppDelegate.m in Sources */,
 				65A66E3C202898A100CA45F5 /* MPTableViewCell.mm in Sources */,
 				65A66E3F202898A100CA45F5 /* MPTableView.m in Sources */,

@@ -134,12 +134,12 @@
 
 
 
-- (NSUInteger)MPTableView:(MPTableView *)tableView numberOfRowsInSection:(NSUInteger)section;
+- (NSInteger)MPTableView:(MPTableView *)tableView numberOfRowsInSection:(NSInteger)section;
 {
     return tests.count;
 }
 
-- (MPTableViewCell *)MPTableView:(MPTableView *)tableView cellForRowAtIndexPath:(MPIndexPath *)indexPath
+- (MPTableViewCell *)MPTableView:(MPTableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     MGSwipeTableCell * cell;
     static NSString * reuseIdentifier = @"programmaticCell";
@@ -211,7 +211,7 @@
 #endif
 
 
-- (CGFloat)MPTableView:(MPTableView *)tableView heightForIndexPath:(MPIndexPath *)indexPath
+- (CGFloat)MPTableView:(MPTableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return 60;
 }
@@ -223,9 +223,9 @@
     
     if (direction == MGSwipeDirectionRightToLeft && index == 0) {
         //delete button
-        MPIndexPath * path = [_tableView indexPathForCell:cell];
+        NSIndexPath * path = [_tableView indexPathForCell:cell];
         [tests removeObjectAtIndex:path.row];
-        [_tableView deleteRowsAtIndexPaths:@[path] withRowAnimation:UITableViewRowAnimationLeft];
+        [_tableView deleteRowsAtIndexPaths:@[path] withRowAnimation:MPTableViewRowAnimationLeft];
         return NO; //Don't autohide to improve delete expansion animation
     }
     

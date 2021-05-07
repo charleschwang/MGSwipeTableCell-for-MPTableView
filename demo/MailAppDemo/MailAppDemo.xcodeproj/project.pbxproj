@@ -16,7 +16,6 @@
 		11754E5519D5C3E5009CE7B5 /* MGSwipeTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 11754E5319D5C3E5009CE7B5 /* MGSwipeTableCell.m */; };
 		65A66E582028A8D200CA45F5 /* MPTableViewCell.mm in Sources */ = {isa = PBXBuildFile; fileRef = 65A66E512028A8D200CA45F5 /* MPTableViewCell.mm */; };
 		65A66E592028A8D200CA45F5 /* MPTableViewSection.mm in Sources */ = {isa = PBXBuildFile; fileRef = 65A66E532028A8D200CA45F5 /* MPTableViewSection.mm */; };
-		65A66E5A2028A8D200CA45F5 /* MPIndexPath.m in Sources */ = {isa = PBXBuildFile; fileRef = 65A66E552028A8D200CA45F5 /* MPIndexPath.m */; };
 		65A66E5B2028A8D200CA45F5 /* MPTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 65A66E562028A8D200CA45F5 /* MPTableView.m */; };
 /* End PBXBuildFile section */
 
@@ -36,11 +35,9 @@
 		11754E5219D5C3E5009CE7B5 /* MGSwipeButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MGSwipeButton.m; path = ../../MGSwipeTableCell/MGSwipeButton.m; sourceTree = "<group>"; };
 		11754E5319D5C3E5009CE7B5 /* MGSwipeTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MGSwipeTableCell.m; path = ../../MGSwipeTableCell/MGSwipeTableCell.m; sourceTree = "<group>"; };
 		65A66E4F2028A8D200CA45F5 /* MPTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPTableView.h; sourceTree = "<group>"; };
-		65A66E502028A8D200CA45F5 /* MPIndexPath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPIndexPath.h; sourceTree = "<group>"; };
 		65A66E512028A8D200CA45F5 /* MPTableViewCell.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = MPTableViewCell.mm; sourceTree = "<group>"; };
 		65A66E532028A8D200CA45F5 /* MPTableViewSection.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = MPTableViewSection.mm; sourceTree = "<group>"; };
 		65A66E542028A8D200CA45F5 /* MPTableViewSection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPTableViewSection.h; sourceTree = "<group>"; };
-		65A66E552028A8D200CA45F5 /* MPIndexPath.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPIndexPath.m; sourceTree = "<group>"; };
 		65A66E562028A8D200CA45F5 /* MPTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPTableView.m; sourceTree = "<group>"; };
 		65A66E572028A8D200CA45F5 /* MPTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPTableViewCell.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -112,13 +109,11 @@
 		65A66E4E2028A8D200CA45F5 /* MPTableView */ = {
 			isa = PBXGroup;
 			children = (
+				65A66E522028A8D200CA45F5 /* Private */,
 				65A66E4F2028A8D200CA45F5 /* MPTableView.h */,
 				65A66E562028A8D200CA45F5 /* MPTableView.m */,
 				65A66E572028A8D200CA45F5 /* MPTableViewCell.h */,
 				65A66E512028A8D200CA45F5 /* MPTableViewCell.mm */,
-				65A66E502028A8D200CA45F5 /* MPIndexPath.h */,
-				65A66E552028A8D200CA45F5 /* MPIndexPath.m */,
-				65A66E522028A8D200CA45F5 /* Private */,
 			);
 			name = MPTableView;
 			path = ../../MGSwipeTableCell/MPTableView;
@@ -172,6 +167,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
@@ -206,7 +202,6 @@
 				65A66E592028A8D200CA45F5 /* MPTableViewSection.mm in Sources */,
 				11754E4E19D5C3A1009CE7B5 /* MailTableCell.m in Sources */,
 				11754E5419D5C3E5009CE7B5 /* MGSwipeButton.m in Sources */,
-				65A66E5A2028A8D200CA45F5 /* MPIndexPath.m in Sources */,
 				11754E2C19D5C1EA009CE7B5 /* AppDelegate.m in Sources */,
 				65A66E582028A8D200CA45F5 /* MPTableViewCell.mm in Sources */,
 				65A66E5B2028A8D200CA45F5 /* MPTableView.m in Sources */,

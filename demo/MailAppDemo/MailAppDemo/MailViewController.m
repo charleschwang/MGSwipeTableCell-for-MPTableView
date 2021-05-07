@@ -125,13 +125,13 @@ typedef void(^MailActionCallback)(BOOL cancelled, BOOL deleted, NSInteger action
     _tableView.frame = self.view.bounds;
 }
 
--(void) deleteMail:(MPIndexPath *) indexPath
+-(void) deleteMail:(NSIndexPath *) indexPath
 {
     [demoData removeObjectAtIndex:indexPath.row];
     [_tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:MPTableViewRowAnimationLeft];
 }
 
--(MailData *) mailForIndexPath:(MPIndexPath*) path
+-(MailData *) mailForIndexPath:(NSIndexPath*) path
 {
     return [demoData objectAtIndex:path.row];
 }
@@ -179,12 +179,12 @@ typedef void(^MailActionCallback)(BOOL cancelled, BOOL deleted, NSInteger action
 
 #pragma mark Table Delegate
 
-- (NSUInteger)MPTableView:(MPTableView *)tableView numberOfRowsInSection:(NSUInteger)section;
+- (NSInteger)MPTableView:(MPTableView *)tableView numberOfRowsInSection:(NSInteger)section;
 {
     return demoData.count;
 }
 
-- (MPTableViewCell *)MPTableView:(MPTableView *)tableView cellForRowAtIndexPath:(MPIndexPath *)indexPath
+- (MPTableViewCell *)MPTableView:(MPTableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString * identifier = @"MailCell";
     MailTableCell * cell = [tableView dequeueReusableCellWithIdentifier:identifier];
@@ -202,7 +202,7 @@ typedef void(^MailActionCallback)(BOOL cancelled, BOOL deleted, NSInteger action
     return cell;
 }
 
-- (CGFloat)MPTableView:(MPTableView *)tableView heightForIndexPath:(MPIndexPath *)indexPath
+- (CGFloat)MPTableView:(MPTableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return 110;
 }
@@ -250,7 +250,7 @@ typedef void(^MailActionCallback)(BOOL cancelled, BOOL deleted, NSInteger action
         
         MGSwipeButton * trash = [MGSwipeButton buttonWithTitle:@"Trash" backgroundColor:[UIColor colorWithRed:1.0 green:59/255.0 blue:50/255.0 alpha:1.0] padding:padding callback:^BOOL(MGSwipeTableCell *sender) {
             
-            MPIndexPath * indexPath = [me.tableView indexPathForCell:sender];
+            NSIndexPath * indexPath = [me.tableView indexPathForCell:sender];
             [me deleteMail:indexPath];
             return NO; //don't autohide to improve delete animation
         }];
@@ -264,7 +264,7 @@ typedef void(^MailActionCallback)(BOOL cancelled, BOOL deleted, NSInteger action
         }];
         MGSwipeButton * more = [MGSwipeButton buttonWithTitle:@"More" backgroundColor:[UIColor colorWithRed:200/255.0 green:200/255.0 blue:205/255.0 alpha:1.0] padding:padding callback:^BOOL(MGSwipeTableCell *sender) {
             
-            MPIndexPath * indexPath = [me.tableView indexPathForCell:sender];
+            NSIndexPath * indexPath = [me.tableView indexPathForCell:sender];
             MailData * mail = [me mailForIndexPath:indexPath];
             MailTableCell * cell = (MailTableCell*) sender;
             [me showMailActions:mail callback:^(BOOL cancelled, BOOL deleted, NSInteger actionIndex) {
